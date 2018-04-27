@@ -1,0 +1,4 @@
+rootProject.name = 'composite-single'
+
+includeBuild("lib1")
+includeBuild("lib2")

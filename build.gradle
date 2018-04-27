@@ -1,0 +1,30 @@
+plugins {
+	id 'idea'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+wrapper {
+	distributionType = Wrapper.DistributionType.ALL
+}
+
+task classes(group: 'composite') {
+	dependsOn gradle.includedBuilds*.task(':classes')
+}
+
+task testClasses(group: 'composite') {
+	dependsOn gradle.includedBuilds*.task(':testClasses')
+}
+
+task clean(group: 'composite') {
+	dependsOn gradle.includedBuilds*.task(':clean')
+}
+
+task build(group: 'composite') {
+	dependsOn gradle.includedBuilds*.task(':build')
+}
+
+task test(group: 'composite') {
+	dependsOn gradle.includedBuilds*.task(':test')
+}

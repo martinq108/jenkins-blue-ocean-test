@@ -1,0 +1,29 @@
+plugins {
+	id 'idea'
+	id 'java-library'
+	id 'maven-publish'
+}
+
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+}
+
+wrapper {
+	distributionType = Wrapper.DistributionType.ALL
+}
+
+dependencies {
+	testImplementation("junit:junit:4.12")
+}
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
+}
