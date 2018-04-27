@@ -18,8 +18,9 @@ pipeline {
     }
     stage('test results') {
       steps {
-        echo 'testing'
-        junit(allowEmptyResults: true, testResults: '**/build/test-results/**/*.xml', keepLongStdio: true)
+        echo 'collecting test results'
+        junit(allowEmptyResults: true, testResults: 'lib1/build/test-results/**/*.xml')
+        junit 'lib2/build/test-results/**/*.xml'
       }
     }
     stage('archive artifacts') {
