@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'martinq/gradle'
+    }
+
+  }
   stages {
     stage('initialize') {
       steps {
