@@ -19,7 +19,7 @@ pipeline {
     stage('test results') {
       steps {
         echo 'testing'
-        junit(allowEmptyResults: true, testResults: '**/build/test-results')
+        junit(allowEmptyResults: true, testResults: '**/build/test-results/**/*.xml', keepLongStdio: true)
       }
     }
     stage('archive artifacts') {
