@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('initialize') {
       steps {
-        echo 'Initializing'
+        echo '========== Initializing =========='
         sh 'pwd'
         sh 'env'
         sh 'java -version'
@@ -12,21 +12,22 @@ pipeline {
     }
     stage('build') {
       steps {
-        echo 'Building'
+        echo '========== Building =========='
         sh './gradlew clean build -s'
       }
     }
     stage('test results') {
       steps {
-        echo 'collecting test results'
+        echo '========== Collecting Test Results =========='
         junit(allowEmptyResults: true, testResults: 'lib1/build/test-results/**/*.xml')
-        junit 'lib2/build/test-results/**/*.xml'
+        junit(allowEmptyResults: true, testResults: 'lib2/build/test-results/**/*.xml')
       }
     }
     stage('archive artifacts') {
       steps {
-        echo 'archive artifacts'
-        archiveArtifacts(onlyIfSuccessful: true, artifacts: '**/build/libs/*.jar')
+        echo '========== Archiving Artifacts =========='
+        archiveArtifacts(onlyIfSuccessful: true, artifacts: 'lib1/build/libs/*.jar')
+        archiveArtifacts(onlyIfSuccessful: true, artifacts: 'lib2/build/libs/*.jar')
       }
     }
   }
